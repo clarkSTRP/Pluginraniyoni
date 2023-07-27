@@ -1,28 +1,19 @@
-<?php
-/*
-Plugin Name: Mon premier plugin
-Plugin URI: https://mon-siteweb.com/
-Description: Ceci est mon premier plugin
-Author: Mon nom et prénom ou celui de ma société
-Version: 1.0
-Author URI: http://mon-siteweb.com/
-*/
-
-
-function capitaine_reading_time( $post_id, $post, $update )  {
-
-	if( ! $update ) { return; }
-	if( wp_is_post_revision( $post_id ) ) { return; }
-	if( defined( 'DOING_AUTOSAVE' ) and DOING_AUTOSAVE ) { return; }
-	if( $post->post_type != 'post' ) { return; }
-
-	// Calculer le temps de lecture
-	$word_count = str_word_count( strip_tags( $post->post_content ) );
-
-	// On prend comme base 250 mots par minute
-	$minutes = ceil( $word_count / 250 );
-	
-	// On sauvegarde la meta
-	update_post_meta( $post_id, 'reading_time', $minutes );
-}
-add_action( 'save_post', 'capitaine_reading_time', 10, 3 );
+     z$$$$$. $$
+    $$$$$$$$$$$
+   $$$$$$**$$$$             eeeeer
+  $$$$$%   '$$$             $$$$$F
+ 4$$$$P     *$$             *$$$$F
+ $$$$$      '$$    .ee.      ^$$$F            ..e.
+ $$$$$       ""  .$$$$$$b     $$$F 4$$$$$$   $$$$$$c
+4$$$$F          4$$$""$$$$    $$$F '*$$$$*  $$$P"$$$L
+4$$$$F         .$$$F  ^$$$b   $$$F  J$$$   $$$$  ^$$$.
+4$$$$F         d$$$    $$$$   $$$F J$$P   .$$$F   $$$$
+4$$$$F         $$$$    3$$$F  $$$FJ$$P    4$$$"   $$$$
+4$$$$F        4$$$$    4$$$$  $$$$$$$r    $$$$$$$$$$$$
+4$$$$$        4$$$$    4$$$$  $$$$$$$$    $$$$********
+ $$$$$        4$$$$    4$$$F  $$$F4$$$b   *$$$r
+ 3$$$$F       d$$$$    $$$$"  $$$F *$$$F  4$$$L     .
+  $$$$$.     d$$$$$.   $$$$   $$$F  $$$$.  $$$$    z$P
+   $$$$$e..d$$$"$$$b  4$$$"  J$$$L  '$$$$  '$$$b..d$$
+    *$$$$$$$$$  ^$$$be$$$"  $$$$$$$  3$$$$F "$$$$$$$"
+     ^*$$$$P"     *$$$$*    $$$$$$$   $$$$F  ^*$$$"
